@@ -1,0 +1,24 @@
+{
+  "name": "react-native-text-gradient",
+  "version": "0.0.1",
+  "author": "Sergei Butko http://svbutko.com",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svbutko/react-native-text-gradient.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svbutko/react-native-text-gradient/issues"
+  },
+  "homepage": "https://github.com/svbutko/react-native-text-gradient",
+  "keywords": [
+    "react-native",
+    "android",
+    "library"
+  ],
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  }
+}
