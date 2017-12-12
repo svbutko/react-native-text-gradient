@@ -1,3 +1,6 @@
 rootProject.name = 'Example'
 
+include ':react-native-text-gradient'
+project(':react-native-text-gradient').projectDir = new File(settingsDir, '../node_modules/react-native-text-gradient/android')
+
 include ':app'
