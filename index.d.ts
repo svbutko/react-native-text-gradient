@@ -1,5 +1,5 @@
 declare module "react-native-text-gradient" {
-    import { Component } from 'react'
+    import { Component } from "react";
 
     interface TextGradientProps {
         text: string;

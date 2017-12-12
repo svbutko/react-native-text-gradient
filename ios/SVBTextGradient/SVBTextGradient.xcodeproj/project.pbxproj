@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		84D0B73C1FE056FB00E55F74 /* SVBTextGradientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0B73B1FE056FB00E55F74 /* SVBTextGradientManager.m */; };
 		84D0B73D1FE056FB00E55F74 /* SVBTextGradientManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84D0B73A1FE056FB00E55F74 /* SVBTextGradientManager.h */; };
+		84D0B7681FE06FCE00E55F74 /* SVBTextGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D0B7671FE06FCE00E55F74 /* SVBTextGradient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		84D0B7371FE056F800E55F74 /* libSVBTextGradient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSVBTextGradient.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D0B73A1FE056FB00E55F74 /* SVBTextGradientManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVBTextGradientManager.h; sourceTree = "<group>"; };
 		84D0B73B1FE056FB00E55F74 /* SVBTextGradientManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVBTextGradientManager.m; sourceTree = "<group>"; };
+		84D0B7661FE06FB500E55F74 /* SVBTextGradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVBTextGradient.h; sourceTree = "<group>"; };
+		84D0B7671FE06FCE00E55F74 /* SVBTextGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVBTextGradient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			children = (
 				84D0B73A1FE056FB00E55F74 /* SVBTextGradientManager.h */,
 				84D0B73B1FE056FB00E55F74 /* SVBTextGradientManager.m */,
+				84D0B7661FE06FB500E55F74 /* SVBTextGradient.h */,
+				84D0B7671FE06FCE00E55F74 /* SVBTextGradient.m */,
 			);
 			path = SVBTextGradient;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D0B7681FE06FCE00E55F74 /* SVBTextGradient.m in Sources */,
 				84D0B73C1FE056FB00E55F74 /* SVBTextGradientManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

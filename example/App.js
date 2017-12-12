@@ -1,11 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, {Component} from "react";
-import {Platform, requireNativeComponent, StyleSheet, Text, View} from "react-native";
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import {TextGradient} from "react-native-text-gradient";
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -14,15 +9,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const TextGradient = Platform.OS == "android" ? require("react-native-text-gradient") : null;
-const Gradient = Platform.OS == "ios" ? requireNativeComponent("SVBTextGradient", null) : null;
-
 export default class App extends Component {
-    showTextGradient = (): JSX.Element | null => {
+    showTextGradient() {
         if (Platform.OS == "ios") {
             return (
                 <View>
-                    <Gradient style={{width: 100, height: 50, backgroundColor: "transparent"}}/>
+                    <TextGradient style={{width: 100, height: 50, backgroundColor: "transparent"}}/>
                 </View>
             );
         } else {

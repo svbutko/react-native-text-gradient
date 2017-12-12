@@ -1,17 +1,19 @@
 #import "SVBTextGradientManager.h"
+#import "SVBTextGradient.h"
 #import <React/RCTViewManager.h>
 
-@implementation SVBTextGradientManager
+@implementation SVBTextGradientManager {
+
+@private
+    SVBTextGradient *_container;
+}
 
 RCT_EXPORT_MODULE()
 
-- (UIView *) view
-{
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"Sample";
-    label.textColor = [UIColor redColor];
-    label.backgroundColor = [UIColor clearColor];
-    return label;
+- (UIView *)view {
+    _container = [[SVBTextGradient alloc] init];
+
+    return _container;
 }
 
 @end
