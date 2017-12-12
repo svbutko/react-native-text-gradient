@@ -14,7 +14,9 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const TextGradient = Platform.OS == "ios" ? requireNativeComponent("SVBTextGradient", null) : require("react-native-text-gradient");
+const TextGradient = Platform.OS == "android" ? require("react-native-text-gradient") : null;
+const Gradient = Platform.OS == "ios" ? requireNativeComponent("SVBTextGradient", null) : null;
+
 export default class App extends Component {
     showTextGradient = (): JSX.Element | null => {
         if (Platform.OS == "ios") {
