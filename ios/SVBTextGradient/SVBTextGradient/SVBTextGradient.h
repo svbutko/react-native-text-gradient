@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import <React/UIView+React.h>
 
 @interface SVBTextGradient : UIView
 

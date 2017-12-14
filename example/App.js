@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
 import {TextGradient} from "react-native-text-gradient";
 
 const instructions = Platform.select({
@@ -10,12 +10,26 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {isStaticHeight: false};
+    }
+
     showTextGradient() {
         if (Platform.OS == "ios") {
             return (
-                <View>
-                    <TextGradient style={{width: 100, height: 50, backgroundColor: "transparent"}}/>
-                </View>
+                <TouchableOpacity style={styles.gradientContainer}
+                                  onPress={() => this.setState({isStaticHeight: !this.state.isStaticHeight})}>
+
+                    <TextGradient
+                        style={[styles.gradientContainer, {margin: 12}]}
+                        text={"some text"}
+                        startPoint={{x: 0, y: 0.5}}
+                        endPoint={{x: 1, y: 0.5}}
+                        colors={["#ff0000", "#00ff00"]}
+                        fontSize={50}
+                    />
+                </TouchableOpacity>
             );
         } else {
             TextGradient.show("RN-text-gradient has been linked successfully!", TextGradient.LONG);
@@ -58,5 +72,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5
+    },
+    gradientContainer: {
+        width: Dimensions.get("window").width,
+        height: 50,
+        backgroundColor: "transparent",
     }
 });

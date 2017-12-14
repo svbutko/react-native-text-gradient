@@ -3,10 +3,8 @@ declare module "react-native-text-gradient" {
 
     interface TextGradientProps {
         text: string;
-        style?: {
-            fontFamily?: string;
-            fontSize?: number;
-        }
+        fontFamily?: string;
+        fontSize?: number;
         colors: string[],
         startPoint?: { x: number, y: number },
         endPoint?: { x: number, y: number },
