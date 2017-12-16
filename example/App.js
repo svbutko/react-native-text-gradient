@@ -1,21 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
-import {requireNativeComponent, processColor} from "react-native";
-
-const TextGradient = requireNativeComponent("TextGradient", null);
-
-const convertPoint = (name, point) => {
-    if (Array.isArray(point)) {
-        console.warn(
-            `LinearGradient '${name}' property shoule be an object with fields 'x' and 'y', ` +
-            'Array type is deprecated.'
-        );
-    }
-    if (point != null && typeof point == 'object') {
-        return [point.x, point.y];
-    }
-    return point;
-};
+import TextGradient from "react-native-text-gradient";
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -35,11 +20,12 @@ export default class App extends Component {
             <TouchableOpacity style={styles.gradientContainer} onPress={() => this.setState({isStaticHeight: !this.state.isStaticHeight})}>
                 <TextGradient
                     style={[styles.gradientContainer, {margin: 12}]}
-                    text={"GRADIENT TEXT"}
-                    startPoint={convertPoint("startPoint", {x: 0, y: 0.5})}
-                    endPoint={convertPoint("endPoint", {x: 1, y: 0.5})}
-                    colors={["#ff0000", "#00ff00"].map(processColor)}
-                    fontSize={50}
+                    text={"Some gradient text"}
+                    startPoint={{x: 0, y: 0}}
+                    endPoint={{x: 0, y: 50}}
+                    colors={["#ff0000", "#00ff00"]}
+                    locations={[0, 1]}
+                    fontSize={15}
                 />
             </TouchableOpacity>
         );
