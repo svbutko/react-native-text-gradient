@@ -7,7 +7,6 @@ import android.graphics.Shader;
 import android.support.v7.widget.AppCompatTextView;
 
 public class TextGradientView extends AppCompatTextView {
-
     private float[] mLocations;
     private float[] mStartPoint = {0, 0};
     private float[] mEndPoint = {0, 1};
@@ -44,7 +43,7 @@ public class TextGradientView extends AppCompatTextView {
     }
 
     private LinearGradient getLinearGradient() {
-        return new LinearGradient(mStartPoint[0], mStartPoint[1], mEndPoint[0], mEndPoint[1], mColors[0], mColors[1], Shader.TileMode.CLAMP);
+        return new LinearGradient(mStartPoint[0], mStartPoint[1], mEndPoint[0], mEndPoint[1], mColors, mLocations,Shader.TileMode.CLAMP);
     }
 
     @Override
