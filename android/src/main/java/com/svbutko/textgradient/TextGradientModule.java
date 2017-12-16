@@ -6,6 +6,7 @@ import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
+import android.graphics.Typeface;
 import android.view.View;
 
 public class TextGradientModule extends SimpleViewManager<TextGradientView> {
@@ -54,5 +55,17 @@ public class TextGradientModule extends SimpleViewManager<TextGradientView> {
     @ReactProp(name=PROP_TEXT)
     public void setText(TextGradientView textGradientView, String text) {
         textGradientView.setText(text);
+    }
+
+    @ReactProp(name=PROP_FONT_SIZE)
+    public void setFontSize(TextGradientView textGradientView, int fontSize) {
+        textGradientView.setTextSize(fontSize);
+    }
+
+    @ReactProp(name=PROP_FONT_FAMILY)
+    public void setFontFamily(TextGradientView textGradientView, String fontFamily) {
+        //TODO: should be changed later! (this code might have memory issues, better to use cache)
+        //https://stackoverflow.com/questions/14343903/what-is-the-equivalent-of-androidfontfamily-sans-serif-light-in-java-code
+        textGradientView.setTypeface(Typeface.create(fontFamily, Typeface.NORMAL));
     }
 }
