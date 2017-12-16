@@ -1,38 +1,58 @@
 package com.svbutko.textgradient;
 
-import android.widget.Toast;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.uimanager.annotations.ReactProp;
+import com.facebook.react.uimanager.PixelUtil;
+import com.facebook.react.uimanager.SimpleViewManager;
+import com.facebook.react.uimanager.ThemedReactContext;
 
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
+import android.view.View;
 
-import java.util.HashMap;
-import java.util.Map;
+public class TextGradientModule extends SimpleViewManager<TextGradientView> {
 
-public class TextGradientModule extends ReactContextBaseJavaModule {
+    public static final String REACT_CLASS = "TextGradient";
+    public static final String PROP_COLORS = "colors";
+    public static final String PROP_LOCATIONS = "locations";
+    public static final String PROP_START_POINT = "startPoint";
+    public static final String PROP_END_POINT = "endPoint";
+    public static final String PROP_TEXT = "text";
+    public static final String PROP_FONT_FAMILY = "fontFamily";
+    public static final String PROP_FONT_SIZE = "fontSize";
 
-  private static final String DURATION_SHORT_KEY = "SHORT";
-  private static final String DURATION_LONG_KEY = "LONG";
+    @Override
+    public String getName() {
+        return REACT_CLASS;
+    }
 
-  public TextGradientModule(ReactApplicationContext reactContext) {
-    super(reactContext);
-  }
+    @Override
+    protected TextGradientView createViewInstance(ThemedReactContext context) {
+        return new TextGradientView(context);
+    }
 
-  @Override
-  public String getName() {
-    return "TextGradient";
-  }
+    @ReactProp(name=PROP_COLORS)
+    public void setColors(TextGradientView textGradientView, ReadableArray colors) {
+        textGradientView.setColors(colors);
+    }
 
-  @Override
-  public Map<String, Object> getConstants() {
-    final Map<String, Object> constants = new HashMap<>();
-    constants.put(DURATION_SHORT_KEY, Toast.LENGTH_SHORT);
-    constants.put(DURATION_LONG_KEY, Toast.LENGTH_LONG);
-    return constants;
-  }
+    @ReactProp(name=PROP_LOCATIONS)
+    public void setLocations(TextGradientView textGradientView, ReadableArray locations) {
+        if (locations != null) {
+            textGradientView.setLocations(locations);
+        }
+    }
 
-  @ReactMethod
-  public void show(String message, int duration) {
-    Toast.makeText(getReactApplicationContext(), message, duration).show();
-  }
+    @ReactProp(name=PROP_START_POINT)
+    public void setStartPoint(TextGradientView textGradientView, ReadableArray startPoint) {
+        textGradientView.setStartPoint(startPoint);
+    }
+
+    @ReactProp(name=PROP_END_POINT)
+    public void setEndPoint(TextGradientView textGradientView, ReadableArray endPoint) {
+        textGradientView.setEndPoint(endPoint);
+    }
+
+    @ReactProp(name=PROP_TEXT)
+    public void setText(TextGradientView textGradientView, String text) {
+        textGradientView.setText(text);
+    }
 }
