@@ -4,7 +4,7 @@ import {requireNativeComponent, Text, View, processColor} from "react-native";
 
 const SVBTextGradient = requireNativeComponent("SVBTextGradient", null);
 
-export class TextGradientIos extends Component {
+export default class TextGradientIos extends Component {
     render() {
         return (
             <SVBTextGradient
