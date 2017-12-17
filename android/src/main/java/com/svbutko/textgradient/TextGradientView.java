@@ -12,6 +12,7 @@ public class TextGradientView extends AppCompatTextView {
     private float[] mStartPoint = {0, 0};
     private float[] mEndPoint = {0, 1};
     private int[] mColors;
+    private int[] mSize = {0, 0};
 
     public TextGradientView(Context context) {
         super(context);
@@ -42,7 +43,21 @@ public class TextGradientView extends AppCompatTextView {
     }
 
     private LinearGradient getLinearGradient() {
-        return new LinearGradient(mStartPoint[0], mStartPoint[1], mEndPoint[0], mEndPoint[1], mColors, mLocations, Shader.TileMode.CLAMP);
+        return new LinearGradient(
+                mStartPoint[0] * mSize[0],
+                mStartPoint[1] * mSize[1],
+                mEndPoint[0] * mSize[0],
+                mEndPoint[1] * mSize[1],
+                mColors,
+                mLocations,
+                Shader.TileMode.CLAMP
+        );
+    }
+
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        mSize = new int[]{w, h};
     }
 
     @Override

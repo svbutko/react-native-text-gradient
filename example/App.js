@@ -17,7 +17,7 @@ export default class App extends Component {
                     startPoint={info.startPoint}
                     endPoint={info.endPoint}
                     colors={info.colors}
-                    locations={[0, 1]}
+                    locations={[0, 0.5]}
                     fontSize={20}
                 />
             </TouchableOpacity>

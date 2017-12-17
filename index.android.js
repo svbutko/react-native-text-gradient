@@ -5,16 +5,11 @@ import {requireNativeComponent, Text, View, processColor} from "react-native";
 const TextGradientView = requireNativeComponent("TextGradient", null);
 
 const convertPoint = (name, point) => {
-    if (Array.isArray(point)) {
-        console.warn(
-            `TextGradient '${name}' property shoule be an object with fields 'x' and 'y', ` +
-            'Array type is deprecated.'
-        );
-    }
     if (point != null && typeof point === 'object') {
         return [point.x, point.y];
+    } else {
+        throw Error(name + " is not an object");
     }
-    return point;
 };
 
 
