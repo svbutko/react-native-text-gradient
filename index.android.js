@@ -18,7 +18,7 @@ const convertPoint = (name, point) => {
 };
 
 
-export default class TextGradientAndroid extends Component {
+export class TextGradient extends Component {
     render() {
         const {style, text, startPoint, endPoint, colors, locations, fontFamily, fontSize} = this.props;
 

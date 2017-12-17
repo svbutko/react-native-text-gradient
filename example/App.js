@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Dimensions} from 'react-native';
-import TextGradient from "react-native-text-gradient";
+import {TextGradient} from "react-native-text-gradient";
 
 export default class App extends Component {
     constructor(props) {
