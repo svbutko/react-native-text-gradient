@@ -1,13 +1,12 @@
 package com.svbutko.textgradient;
 
+import android.graphics.Typeface;
+
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
-
-import android.graphics.Typeface;
-import android.view.View;
+import com.facebook.react.uimanager.annotations.ReactProp;
+import com.facebook.react.views.text.ReactFontManager;
 
 public class TextGradientModule extends SimpleViewManager<TextGradientView> {
 
@@ -20,6 +19,8 @@ public class TextGradientModule extends SimpleViewManager<TextGradientView> {
     public static final String PROP_FONT_FAMILY = "fontFamily";
     public static final String PROP_FONT_SIZE = "fontSize";
 
+    private static ReactFontManager fontManager = ReactFontManager.getInstance();
+
     @Override
     public String getName() {
         return REACT_CLASS;
@@ -30,42 +31,40 @@ public class TextGradientModule extends SimpleViewManager<TextGradientView> {
         return new TextGradientView(context);
     }
 
-    @ReactProp(name=PROP_COLORS)
+    @ReactProp(name = PROP_COLORS)
     public void setColors(TextGradientView textGradientView, ReadableArray colors) {
         textGradientView.setColors(colors);
     }
 
-    @ReactProp(name=PROP_LOCATIONS)
+    @ReactProp(name = PROP_LOCATIONS)
     public void setLocations(TextGradientView textGradientView, ReadableArray locations) {
         if (locations != null) {
             textGradientView.setLocations(locations);
         }
     }
 
-    @ReactProp(name=PROP_START_POINT)
+    @ReactProp(name = PROP_START_POINT)
     public void setStartPoint(TextGradientView textGradientView, ReadableArray startPoint) {
         textGradientView.setStartPoint(startPoint);
     }
 
-    @ReactProp(name=PROP_END_POINT)
+    @ReactProp(name = PROP_END_POINT)
     public void setEndPoint(TextGradientView textGradientView, ReadableArray endPoint) {
         textGradientView.setEndPoint(endPoint);
     }
 
-    @ReactProp(name=PROP_TEXT)
+    @ReactProp(name = PROP_TEXT)
     public void setText(TextGradientView textGradientView, String text) {
         textGradientView.setText(text);
     }
 
-    @ReactProp(name=PROP_FONT_SIZE)
+    @ReactProp(name = PROP_FONT_SIZE)
     public void setFontSize(TextGradientView textGradientView, int fontSize) {
         textGradientView.setTextSize(fontSize);
     }
 
-    @ReactProp(name=PROP_FONT_FAMILY)
+    @ReactProp(name = PROP_FONT_FAMILY)
     public void setFontFamily(TextGradientView textGradientView, String fontFamily) {
-        //TODO: should be changed later! (this code might have memory issues, better to use cache)
-        //https://stackoverflow.com/questions/14343903/what-is-the-equivalent-of-androidfontfamily-sans-serif-light-in-java-code
-        textGradientView.setTypeface(Typeface.create(fontFamily, Typeface.NORMAL));
+        textGradientView.setTypeface(fontManager.getTypeface(fontFamily, Typeface.NORMAL, null));
     }
 }

@@ -1,10 +1,11 @@
 package com.svbutko.textgradient;
 
-import com.facebook.react.bridge.ReadableArray;
 import android.content.Context;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.support.v7.widget.AppCompatTextView;
+
+import com.facebook.react.bridge.ReadableArray;
 
 public class TextGradientView extends AppCompatTextView {
     private float[] mLocations;
@@ -26,8 +27,7 @@ public class TextGradientView extends AppCompatTextView {
 
     public void setColors(ReadableArray colors) {
         int[] _colors = new int[colors.size()];
-        for (int i=0; i < _colors.length; i++)
-        {
+        for (int i = 0; i < _colors.length; i++) {
             _colors[i] = colors.getInt(i);
         }
         mColors = _colors;
@@ -35,23 +35,20 @@ public class TextGradientView extends AppCompatTextView {
 
     public void setLocations(ReadableArray locations) {
         float[] _locations = new float[locations.size()];
-        for (int i=0; i < _locations.length; i++)
-        {
+        for (int i = 0; i < _locations.length; i++) {
             _locations[i] = (float) locations.getDouble(i);
         }
         mLocations = _locations;
     }
 
     private LinearGradient getLinearGradient() {
-        return new LinearGradient(mStartPoint[0], mStartPoint[1], mEndPoint[0], mEndPoint[1], mColors, mLocations,Shader.TileMode.CLAMP);
+        return new LinearGradient(mStartPoint[0], mStartPoint[1], mEndPoint[0], mEndPoint[1], mColors, mLocations, Shader.TileMode.CLAMP);
     }
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom)
-    {
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if(changed)
-        {
+        if (changed) {
             getPaint().setShader(getLinearGradient());
         }
     }
