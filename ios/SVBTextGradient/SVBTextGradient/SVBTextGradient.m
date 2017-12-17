@@ -31,8 +31,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    _gradient.frame = self.bounds;
-    _label.frame = self.bounds;
+    [_label sizeToFit];
+    _gradient.frame = _label.frame;
 }
 
 - (void)setFontFamily:(NSString *)fontFamily {
@@ -45,6 +45,8 @@
 
 - (void)setText:(NSString *)text {
     _label.text = text;
+    [_label sizeToFit];
+    [self reactSetFrame:_label.frame];
 }
 
 - (void)setColors:(NSArray *)colors {
