@@ -16,6 +16,7 @@ public class TextGradientView extends AppCompatTextView {
 
     public TextGradientView(Context context) {
         super(context);
+        this.setGravity(Gravity.CENTER_VERTICAL);
     }
 
     public void setStartPoint(ReadableArray startPoint) {
