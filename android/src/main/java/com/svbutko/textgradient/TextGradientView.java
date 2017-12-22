@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.Gravity;
 
 import com.facebook.react.bridge.ReadableArray;
 
