@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.TextUtils;
 import android.view.Gravity;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -18,6 +19,8 @@ public class TextGradientView extends AppCompatTextView {
     public TextGradientView(Context context) {
         super(context);
         this.setGravity(Gravity.CENTER_VERTICAL);
+        this.setLines(1);
+        this.setEllipsize(TextUtils.TruncateAt.END);
     }
 
     public void setStartPoint(ReadableArray startPoint) {
