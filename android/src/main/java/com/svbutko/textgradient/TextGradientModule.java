@@ -1,5 +1,6 @@
 package com.svbutko.textgradient;
 
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -20,6 +21,7 @@ public class TextGradientModule extends SimpleViewManager<TextGradientView> {
     public static final String PROP_FONT_SIZE = "fontSize";
 
     private static ReactFontManager fontManager = ReactFontManager.getInstance();
+    private AssetManager _assets;
 
     @Override
     public String getName() {
@@ -28,6 +30,8 @@ public class TextGradientModule extends SimpleViewManager<TextGradientView> {
 
     @Override
     protected TextGradientView createViewInstance(ThemedReactContext context) {
+        _assets = context.getAssets();
+
         return new TextGradientView(context);
     }
 
@@ -65,6 +69,6 @@ public class TextGradientModule extends SimpleViewManager<TextGradientView> {
 
     @ReactProp(name = PROP_FONT_FAMILY)
     public void setFontFamily(TextGradientView textGradientView, String fontFamily) {
-        textGradientView.setTypeface(fontManager.getTypeface(fontFamily, Typeface.NORMAL, null));
+        textGradientView.setTypeface(fontManager.getTypeface(fontFamily, Typeface.NORMAL, _assets));
     }
 }
