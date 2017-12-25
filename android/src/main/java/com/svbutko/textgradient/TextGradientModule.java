@@ -1,74 +1,75 @@
 package com.svbutko.textgradient;
 
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
+import android.content.Context;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.support.v7.widget.AppCompatTextView;
+import android.text.TextUtils;
+import android.view.Gravity;
 
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.uimanager.SimpleViewManager;
-import com.facebook.react.uimanager.ThemedReactContext;
-import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.views.text.ReactFontManager;
 
-public class TextGradientModule extends SimpleViewManager<TextGradientView> {
+public class TextGradientView extends AppCompatTextView {
+    private float[] mLocations;
+    private float[] mStartPoint = {0, 0};
+    private float[] mEndPoint = {0, 1};
+    private int[] mColors;
+    private int[] mSize = {0, 0};
 
-    public static final String REACT_CLASS = "TextGradient";
-    public static final String PROP_COLORS = "colors";
-    public static final String PROP_LOCATIONS = "locations";
-    public static final String PROP_START_POINT = "startPoint";
-    public static final String PROP_END_POINT = "endPoint";
-    public static final String PROP_TEXT = "text";
-    public static final String PROP_FONT_FAMILY = "fontFamily";
-    public static final String PROP_FONT_SIZE = "fontSize";
-
-    private static ReactFontManager fontManager = ReactFontManager.getInstance();
-    private AssetManager _assets;
-
-    @Override
-    public String getName() {
-        return REACT_CLASS;
+    public TextGradientView(Context context) {
+        super(context);
+        this.setGravity(Gravity.CENTER_VERTICAL);
+        this.setLines(1);
+        this.setEllipsize(TextUtils.TruncateAt.END);
     }
 
-    @Override
-    protected TextGradientView createViewInstance(ThemedReactContext context) {
-        _assets = context.getAssets();
-
-        return new TextGradientView(context);
+    public void setStartPoint(ReadableArray startPoint) {
+        mStartPoint = new float[]{(float) startPoint.getDouble(0), (float) startPoint.getDouble(1)};
     }
 
-    @ReactProp(name = PROP_COLORS)
-    public void setColors(TextGradientView textGradientView, ReadableArray colors) {
-        textGradientView.setColors(colors);
+    public void setEndPoint(ReadableArray endPoint) {
+        mEndPoint = new float[]{(float) endPoint.getDouble(0), (float) endPoint.getDouble(1)};
     }
 
-    @ReactProp(name = PROP_LOCATIONS)
-    public void setLocations(TextGradientView textGradientView, ReadableArray locations) {
-        if (locations != null) {
-            textGradientView.setLocations(locations);
+    public void setColors(ReadableArray colors) {
+        int[] _colors = new int[colors.size()];
+        for (int i = 0; i < _colors.length; i++) {
+            _colors[i] = colors.getInt(i);
         }
+        mColors = _colors;
     }
 
-    @ReactProp(name = PROP_START_POINT)
-    public void setStartPoint(TextGradientView textGradientView, ReadableArray startPoint) {
-        textGradientView.setStartPoint(startPoint);
+    public void setLocations(ReadableArray locations) {
+        float[] _locations = new float[locations.size()];
+        for (int i = 0; i < _locations.length; i++) {
+            _locations[i] = (float) locations.getDouble(i);
+        }
+        mLocations = _locations;
     }
 
-    @ReactProp(name = PROP_END_POINT)
-    public void setEndPoint(TextGradientView textGradientView, ReadableArray endPoint) {
-        textGradientView.setEndPoint(endPoint);
+    private LinearGradient getLinearGradient() {
+        return new LinearGradient(
+                mStartPoint[0] * mSize[0],
+                mStartPoint[1] * mSize[1],
+                mEndPoint[0] * mSize[0],
+                mEndPoint[1] * mSize[1],
+                mColors,
+                mLocations,
+                Shader.TileMode.CLAMP
+        );
     }
 
-    @ReactProp(name = PROP_TEXT)
-    public void setText(TextGradientView textGradientView, String text) {
-        textGradientView.setText(text);
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        mSize = new int[]{w, h};
     }
 
-    @ReactProp(name = PROP_FONT_SIZE)
-    public void setFontSize(TextGradientView textGradientView, int fontSize) {
-        textGradientView.setTextSize(fontSize);
-    }
-
-    @ReactProp(name = PROP_FONT_FAMILY)
-    public void setFontFamily(TextGradientView textGradientView, String fontFamily) {
-        textGradientView.setTypeface(fontManager.getTypeface(fontFamily, Typeface.NORMAL, _assets));
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        if (changed) {
+            getPaint().setShader(getLinearGradient());
+        }
     }
 }
