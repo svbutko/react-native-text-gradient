@@ -32,7 +32,7 @@
     [super layoutSubviews];
 
     [_label sizeToFit];
-    _label.frame = CGRectMake(0, (self.frame.size.height - _label.frame.size.height) / 2.0, _label.frame.size.width, _label.frame.size.height);
+    _label.frame = CGRectMake(0, (self.frame.size.height - _label.frame.size.height) / 2.0, MIN(_label.frame.size.width, self.frame.size.width), _label.frame.size.height);
     _gradient.frame = _label.frame;
 }
 
