@@ -6,6 +6,7 @@ import android.graphics.Shader;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.graphics.Color;
 
 import com.facebook.react.bridge.ReadableArray;
 
@@ -21,6 +22,7 @@ public class TextGradientView extends AppCompatTextView {
         this.setGravity(Gravity.CENTER_VERTICAL);
         this.setLines(1);
         this.setEllipsize(TextUtils.TruncateAt.END);
+        this.setTextColor(Color.WHITE);
     }
 
     public void setStartPoint(ReadableArray startPoint) {
