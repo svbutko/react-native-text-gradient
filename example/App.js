@@ -62,12 +62,11 @@ const styles = StyleSheet.create({
     },
     gradientContainer: {
         width: Dimensions.get("window").width,
+        alignItems: "center",
         backgroundColor: "transparent",
         borderWidth: 1,
         borderColor: "black"
     },
     gradient: {
-        width: Dimensions.get("window").width,
-        height: 50,
     }
 });
